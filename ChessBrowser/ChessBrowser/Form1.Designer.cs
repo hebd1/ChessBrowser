@@ -53,19 +53,46 @@ namespace ChessBrowser
                         MySqlCommand cmd = conn.CreateCommand();
 
                         cmd.CommandText = "insert ignore into Events(Name,Site,Date) " +
-                            "values (@Name, @Site, @Date)";
+                            "values (@eventname, @site, @date); ";
 
-                        cmd.Parameters.AddWithValue("@Name", game.Event);
-                        cmd.Parameters.AddWithValue("@Site", game.Site);
-                        cmd.Parameters.AddWithValue("@Date", game.EventDate);
+                        cmd.Parameters.AddWithValue("@eventname", game.Event);
+                        cmd.Parameters.AddWithValue("@site", game.Site);
+                        cmd.Parameters.AddWithValue("@date", game.EventDate);
 
+                        cmd.CommandText += "insert ignore into Players(Name, Elo) " +
+                            "values (@wname, @welo) on duplicate key update Elo = if(values(Elo) > Elo, values(Elo), Elo); ";
+
+                        cmd.Parameters.AddWithValue("@wname", game.White);
+                        cmd.Parameters.AddWithValue("@welo", game.WhiteElo);
+
+
+                        cmd.CommandText += "insert ignore into Players(Name, Elo) " +
+                            "values (@bname, @belo) on duplicate key update Elo = if(values(Elo) > Elo, values(Elo), Elo); ";
+
+                        cmd.Parameters.AddWithValue("@bname", game.Black);
+                        cmd.Parameters.AddWithValue("@belo", game.BlackElo);
+
+
+
+                        cmd.CommandText += "insert ignore into Games(Round, Result, Moves, BlackPlayer, WhitePlayer, eID) " +
+                            "values (@round, @result, @moves, (select pID from Players where Players.Name = @blackplayer), " +
+                            "(select pID from Players where Players.Name = @whiteplayer), (select eID from Events where Events.Name = @eventname and " +
+                            " Events.Site = @site and Events.Date = @date)); ";
+
+                        cmd.Parameters.AddWithValue("@round", game.Round);
+                        cmd.Parameters.AddWithValue("@result", game.Round);
+                        cmd.Parameters.AddWithValue("@moves", game.Moves);
+                        cmd.Parameters.AddWithValue("@blackplayer", game.Black);
+                        cmd.Parameters.AddWithValue("@whiteplayer", game.White);
 
                         cmd.ExecuteNonQuery();
+
                         uploaded++;
+                        WorkStepCompleted();
+
                     }
 
                     // Use this to tell the GUI that one work step has completed:
-                     WorkStepCompleted();
 
                 }
                 catch (Exception e)
