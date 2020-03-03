@@ -1,0 +1,8 @@
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\bin\Debug\netstandard2.0\ChessTools.deps.json
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\bin\Debug\netstandard2.0\ChessTools.dll
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\bin\Debug\netstandard2.0\ChessTools.pdb
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\obj\Debug\netstandard2.0\ChessTools.csprojAssemblyReference.cache
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\obj\Debug\netstandard2.0\ChessTools.AssemblyInfoInputs.cache
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\obj\Debug\netstandard2.0\ChessTools.AssemblyInfo.cs
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\obj\Debug\netstandard2.0\ChessTools.dll
+C:\Users\u0871009\Desktop\2020\CS5530 Databases\ChessBrowser\ChessBrowser\ChessTools\obj\Debug\netstandard2.0\ChessTools.pdb

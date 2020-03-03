@@ -4,17 +4,6 @@
     "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessTools\\ChessTools.csproj": {}
   },
   "projects": {
-    "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessBrowser\\ChessBrowser.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessBrowser\\ChessBrowser.csproj",
-        "projectName": "ChessBrowser",
-        "projectPath": "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessBrowser\\ChessBrowser.csproj"
-      },
-      "frameworks": {
-        "net461": {}
-      }
-    },
     "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessTools\\ChessTools.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -40,11 +29,7 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "projectReferences": {
-              "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessBrowser\\ChessBrowser.csproj": {
-                "projectPath": "C:\\Users\\u0871009\\Desktop\\2020\\CS5530 Databases\\ChessBrowser\\ChessBrowser\\ChessBrowser\\ChessBrowser.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
