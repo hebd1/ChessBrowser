@@ -63,15 +63,15 @@ namespace ChessTools
                             string result = Regex.Match(line, "\"(.*?)]").ToString().Replace("\"", "").Replace("]", "");
                             if (result == "1/2-1/2")
                             {
-                                currentGame.Result = "D";
+                                currentGame.Result = 'D';
 
                             } else if (result == "1-0")
                             {
-                                currentGame.Result = "W";
+                                currentGame.Result = 'W';
 
                             } else if (result == "0-1")
                             {
-                                currentGame.Result = "B";
+                                currentGame.Result = 'B';
 
                             }
 

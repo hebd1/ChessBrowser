@@ -12,7 +12,7 @@ namespace ChessTools
         public string Black { get; set; }
         public string WhiteElo { get; set; }
         public string BlackElo { get; set; }
-        public string Result { get; set; }
+        public char Result { get; set; }
         public string EventDate { get; set; }
         public string Moves { get; set; }
 

@@ -34,6 +34,7 @@ namespace ChessBrowser
             PGNReader reader = new PGNReader();
             List<ChessGame> games = reader.parseFile(PGNfilename);
 
+
             // Use this to tell the GUI's progress bar how many total work steps there are
             // For example, one iteration of your main upload loop could be one work step
              SetNumWorkItems(games.Count);
@@ -80,7 +81,7 @@ namespace ChessBrowser
                             " Events.Site = @site and Events.Date = @date)); ";
 
                         cmd.Parameters.AddWithValue("@round", game.Round);
-                        cmd.Parameters.AddWithValue("@result", game.Round);
+                        cmd.Parameters.AddWithValue("@result", game.Result);
                         cmd.Parameters.AddWithValue("@moves", game.Moves);
                         cmd.Parameters.AddWithValue("@blackplayer", game.Black);
                         cmd.Parameters.AddWithValue("@whiteplayer", game.White);
@@ -142,6 +143,88 @@ namespace ChessBrowser
                     //       then parse the results into an appropriate string
                     //       and return it.
                     //       Remember that the returned string must use \r\n newlines
+                    MySqlCommand cmd = conn.CreateCommand();
+                    MySqlDataReader reader;
+
+                    string whitecmd = "";
+                    string blackcmd = "";
+                    string openingcmd = "";
+                    string winnercmd = "";
+                    string datecmd = "";
+                    string movescmd = ""; 
+
+                    if (white != "")
+                    {
+                        whitecmd = " and WP.Name=\"" + white + "\"";
+
+                    }
+                    if (black != "")
+                    {
+                        blackcmd = " and BP.Name=\"" + black + "\" ";
+
+                    } 
+                    if (opening != "")
+                    {
+                        openingcmd = " and Games.Moves like \"" + opening + "%\" ";
+                    } 
+                    if (winner != "")
+                    {
+                        if (winner == "White")
+                        {
+                            winnercmd = " and Result=\"W\"";
+
+                        } else if (winner == "Black")
+                        {
+                            winnercmd = " and Result=\"B\"";
+                        } else if (winner == "Draw")
+                        {
+                            winnercmd = " and Result=\"D\"";
+
+                        }
+                    }
+                    if (useDate == true)
+                    {
+                      
+                        datecmd = " and Date between date(\"" + start.ToString("yyyy-MM-dd") + "\") and date(\"" + end.ToString("yyyy-MM-dd") + "\")";
+                    } 
+                    if (showMoves == true)
+                    {
+                        movescmd = ", Games.Moves ";
+                    }
+
+                    cmd.CommandText = "select Events.Name as Event, Events.Site, Date, WP.Name as White, WP.Elo as WElo, BP.Name as Black, BP.Elo as BElo, Games.Result" + movescmd 
+                        + " from Games natural join Events inner join Players as BP on BP.pID=Games.BlackPlayer " + blackcmd + " inner join "
+                        + "Players as WP on WP.pID=Games.WhitePlayer" + whitecmd + openingcmd + winnercmd + datecmd + ";";
+
+                    reader = cmd.ExecuteReader();
+                    string name = "";
+                    string field = "";
+                    int count = reader.FieldCount;
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            name = reader.GetName(i);
+                            field = reader.GetValue(i).ToString();
+
+                            if (i == 4 || i == 6)
+                            {
+                                parsedResult += " (" + field + ")\r\n";
+                            }
+                            else if (i == 3 || i == 5)
+                            {
+                                parsedResult += name + ": " + field;
+                            }
+                            else
+                            {
+                                parsedResult += name + ": " + field + "\r\n";
+                            }
+                        }
+                        parsedResult += "\r\n\r\n";
+                        numRows++;
+                    }
+                    reader.Close();
+
                 }
                 catch (Exception e)
                 {
